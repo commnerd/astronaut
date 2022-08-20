@@ -6,8 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-astronaut = { version = "0.5.0-rc.2", features = ["secrets"] }
+astronaut = { path = "../..", version = "0.1.0" }
 
-[dev-dependencies]
-glob = "v0.3.0"
-trybuild = "1.0"
+[build-dependencies]
+glob = "0.3.0"

@@ -25,11 +25,10 @@ impl App {
         
     }
 
-    pub async fn to_the_moon(self) -> App {
+    pub fn to_the_moon(self) -> App {
         App{
             rocket: self.rocket
         }
-        
     }
 }
 
