@@ -3,7 +3,7 @@
 
 #[get("/")]
 fn something() -> &'static str {
-    "Wow, cool!";
+    "Wow, cool!"
 }
 
 fn main() {
