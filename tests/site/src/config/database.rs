@@ -1,8 +1,8 @@
 config!{
-    database: "sqlite",
-    drivers: {
-        sqlite: {
-            location: "database",
+    "database": "sqlite",
+    "drivers": {
+        "sqlite": {
+            "location": "database"
         }
     }
 }
