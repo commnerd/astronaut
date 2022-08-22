@@ -13,7 +13,7 @@ pub fn to_the_moon() -> App {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn to_the_moon() -> App {
-        super::to_the_moon()
+    fn to_the_moon() {
+        super::to_the_moon();
     }
 }
