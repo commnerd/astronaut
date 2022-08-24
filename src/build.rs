@@ -5,6 +5,13 @@ use glob::{glob, Paths};
 use std::fs::File;
 use std::io::{BufWriter, Write};
 
+
+fn test() -> std::io::Result<()> {
+    let file = File::create("/tmp/test")?;
+    let mut bw = BufWriter::new(file);
+    bw.write_all("Goodbye".as_bytes()).expect("Unable to write data");
+    Ok(())
+}
 fn write_mod(dir: String, path: String, paths: Paths) -> std::io::Result<()> {
     let file = File::create(&path)?;
     let mut bw = BufWriter::new(file);
@@ -22,6 +29,7 @@ fn write_mod(dir: String, path: String, paths: Paths) -> std::io::Result<()> {
             Err(e) => println!("{:?}", e),
         }
     }
+    test();
 
     for module in &mods {
         mod_contents.push_str("pub mod ");
