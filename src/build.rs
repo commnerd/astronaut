@@ -6,25 +6,44 @@ use std::fs::File;
 use std::io::{BufWriter, Write};
 
 fn write_mod(dir: String, path: String, paths: Paths) -> std::io::Result<()> {
-    let file = File::create(path)?;
+    let file = File::create(&path)?;
     let mut bw = BufWriter::new(file);
-    let mut mods = "".to_owned();
+    let mut mods = Vec::<&str>::new();
+    let mut mod_contents = "".to_owned();
+    let path_string = path.to_string();
     for entry in paths {
+        let module = &path_string[dir.len() + 5..path_string.len() - 3];
         match entry {
-            Ok(path) => {
-                let path_string = path.display().to_string();
+            Ok(_) => {
                 if path_string[path_string.len() - 6..] != String::from("mod.rs") {
-                    let path = path.display().to_string();
-                    mods.push_str("pub mod ");
-                    mods.push_str(&path[dir.len() + 5..path.len() - 3]);
-                    mods.push_str(";\n");
+                    mods.push(&module);
                 }
             },
             Err(e) => println!("{:?}", e),
         }
-        
     }
-    bw.write_all(mods.as_bytes()).expect("Unable to write data");
+
+    for module in &mods {
+        mod_contents.push_str("pub mod ");
+        mod_contents.push_str(module);
+        mod_contents.push_str(";\n");
+
+        match module {
+            &"config" => {
+                mod_contents.push_str("\n");
+                mod_contents.push_str("pub fn read() -> Value {\n");
+                mod_contents.push_str(" astronaut::config::new()\n");
+                for module in &mods {
+                    mod_contents.push_str(format!("     .add({}.get())", module).as_str());
+                }
+                mod_contents.push_str(";\n");
+                mod_contents.push_str("}")
+            }
+            _ => ()
+        }
+    }
+
+    bw.write_all(mod_contents.as_bytes()).expect("Unable to write data");
     Ok(())
 }
 
