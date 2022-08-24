@@ -2,6 +2,7 @@ extern crate rocket;
 pub extern crate serde_json;
 
 pub mod app;
+pub mod build;
 pub mod macros;
 
 use app::App;

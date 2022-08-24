@@ -8,6 +8,9 @@ edition = "2021"
 [dependencies]
 rocket = { version = "0.5.0-rc.2", features = ["secrets"] }
 serde_json = "1.0.83"
+glob = "0.3.0"
 
 [dev-dependencies]
 trybuild = "1.0"
+
+[build-dependencies]
