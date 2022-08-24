@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 astronaut = { path = "../..", version = "0.1.0" }
+
+[build-dependencies]
+astronaut = { path = "../..", version = "0.1.0" }

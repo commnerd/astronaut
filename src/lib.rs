@@ -11,6 +11,10 @@ pub fn to_the_moon() -> App {
     app::get_app().to_the_moon()
 }
 
+pub fn build() {
+    build::build();
+}
+
 #[cfg(test)]
 mod tests {
     #[test]
